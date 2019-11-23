@@ -1,3 +1,31 @@
+<?php
+require_once "core/init.php";
+
+if(isset($_POST['submit'])){
+      $nama = $_POST['username'];
+      $pass = $_POST['password'];
+      $alamat = $_POST['alamat'];
+
+  $result = mysqli_query($db, "SELECT * FROM user WHERE username = '$nama' AND alamat = '$alamat' AND password = '$pass'  ");
+
+
+
+
+
+
+}
+
+
+
+ ?>
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -8,7 +36,7 @@
   </head>
   <body>
     <div class="wrapper">
-      <form class="form-signin">
+      <form action="" method="post" class="form-signin">
         <h2 class="form-signin-heading">Please login</h2>
         <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
         <br>
