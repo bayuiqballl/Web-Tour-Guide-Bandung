@@ -1,3 +1,27 @@
+<?php
+require_once 'functions/user.php';
+
+if (isset($_POST["register"])){
+
+  if (regsitrasi($_POST) > 0){
+    echo "<script>
+			alert('user baru berhasil ditambahkan!');
+			</script>";
+  }else {
+    echo mysqli_error($link);
+  }
+
+
+}
+
+
+
+
+
+
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -8,21 +32,21 @@
   </head>
   <body>
     <div class="wrapper">
-      <form class="form-signin">
+      <form class="form-signin" action="" method="post">
         <h2 class="form-signin-heading">Please Register</h2>
-        <label for="username">Username</label>
-        <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
+        <label for="nama">Username</label>
+        <input type="text" class="form-control" name="nama" id="nama" placeholder="Email Address" required="" autofocus="" />
         <br>
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
+        <label for="pass">Password</label>
+        <input type="password" class="form-control" name="password" id="pass" placeholder="Password" required=""/>
         <br>
-        <label for="password">Re-Password</label>
-        <input type="password2" class="form-control" name="password2" placeholder="Re-Password" required=""/>
+        <label for="pass2">Re-Password</label>
+        <input type="password" class="form-control" name="password2" id="pass2" placeholder="Re-Password" required=""/>
         <br>
-        <label for="address">Address</label>
-        <textarea name="address" class="form-control" rows="4" cols="40"></textarea>
+        <label for="alamat">Address</label>
+        <textarea name="alamat" id="alamat" class="form-control" rows="4" cols="40"></textarea>
         <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="register">Submit</button>
         <a href="login.php" class="btn btn btn-lg btn-primary btn-block">Back to Login</a>
       </form>
 
