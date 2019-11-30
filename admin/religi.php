@@ -2,17 +2,16 @@
 
   <div class="d-flex" id="wrapper">
 
-      <?php
-        require_once "sidebar.php";
-        require_once "view/nav.php";
-        ?>
+      <?php require_once "sidebar.php";
+            require_once "view/nav.php";
+      ?>
 
 
 
       <div class="container-fluid">
         <h1 class="mt-4">Data Bandung Tour Guide</h1><br>
 
-<table class="table">
+        <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">No.</th>

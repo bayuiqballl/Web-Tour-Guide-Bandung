@@ -38,11 +38,6 @@ $error = true;
     <meta charset="utf-8">
     <title>Login Page</title>
 
-    <?php if(isset($error)) : ?>
-      <p style="color : red; font-style: italic;"> username / password salah</p>
-    <?php endif; ?>
-
-
     <link rel="stylesheet" href="view/css/bootstrap.css">
     <link rel="stylesheet" href="view/css/stylelogin.css">
   </head>
@@ -58,6 +53,14 @@ $error = true;
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="login">Login</button>
         <a href="register.php" class="btn btn btn-lg btn-primary btn-block">Regsiter</a>
+        <br>
+        <?php if(isset($error)) : ?>
+          <div class="alert alert-danger " role="alert">
+               <p>username dan password salah!</p>
+          </div>
+        <?php endif; ?>
+
+
       </form>
 
     </div>

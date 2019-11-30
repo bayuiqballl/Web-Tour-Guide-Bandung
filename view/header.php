@@ -68,40 +68,18 @@
 					</div>
 					<div class="col-xs-8 text-right menu-1">
 						<ul>
-							<li><a href="./destination.php">Destination</a></li>
+							<li><a href="./destination.php">Favorite Destination</a></li>
 							<li class="has-dropdown">
-								<a href="#">Wisata Religi</a>
-								<ul class="dropdown">
-									<li><a href="#">Masjid Raya Bandung</a></li>
-									<li><a href="#">Biara Karmel</a></li>
-									<li>
-										<a href="#">Vihara Vipassana Graha Lembang</a>
-									</li>
-								</ul>
+								<a href="./detail.php">Wisata Religi</a>
 							</li>
 							<li class="has-dropdown">
-								<a href="#">Wisata Kuliner</a>
-								<ul class="dropdown">
-									<li><a href="#">Batagor Hanjuang</a></li>
-									<li><a href="#">Paskal Food Market</a></li>
-									<li><a href="#">Bakmi Apin</a></li>
-								</ul>
+								<a href="./detail.php">Wisata Kuliner</a>
 							</li>
 							<li class="has-dropdown">
-								<a href="#">Wisata Budaya</a>
-								<ul class="dropdown">
-									<li><a href="#">Kampung Adat Mahmud</a></li>
-									<li><a href="#">Taman Budaya Dago</a></li>
-									<li><a href="#">Saung Angklung Udjo</a></li>
-								</ul>
+								<a href="./detail.php">Wisata Budaya</a>
 							</li>
 							<li class="has-dropdown">
-								<a href="#">Lokasi Hotel</a>
-								<ul class="dropdown">
-									<li><a href="#">Hilton Bandung</a></li>
-									<li><a href="#">Gino Feruci Braga Hotel</a></li>
-									<li><a href="#">Aston Pasteur</a></li>
-								</ul>
+								<a href="./detail.php">Lokasi Hotel</a>
 							</li>
 						</ul>
 					</div>
