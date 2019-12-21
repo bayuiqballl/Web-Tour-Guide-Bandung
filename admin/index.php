@@ -1,52 +1,59 @@
-<?php require_once "view/header.php"; ?>
-
-  <div class="d-flex" id="wrapper">
-
-      <?php
-        require_once "sidebar.php";
-        require_once "view/nav.php";
-        ?>
+<?php
+require_once "view/header.php";
+require_once "../core/init.php";
 
 
+$wisata = query("SELECT * FROM wisatapopuler");
 
-      <div class="container-fluid">
-        <h1 class="mt-4">Data Bandung Tour Guide</h1><br>
+?>
 
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">No.</th>
-      <th scope="col">Judul</th>
-      <th scope="col">Isi</th>
-      <th scope="col">Aksi</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-      </div>
-    </div>
-    <!-- /#page-content-wrapper -->
+<div class="d-flex" id="wrapper">
 
+  <?php
+  require_once "sidebar.php";
+  require_once "view/nav.php";
+  ?>
+
+
+
+  <div class="container-fluid">
+    <h1 class="mt-4">Data Bandung Tour Guide</h1><br>
+    <br>
+    <a href="add.php">Tambah Data</a>
+    <br>
+    <table class="table">
+
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Judul</th>
+          <th scope="col">Gambar</th>
+          <th scope="col">isi</th>
+          <th scope="col">Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php $i = 1; ?>
+        <?php foreach ($wisata as $row) : ?>
+          <tr>
+            <th scope="row"><?= $i; ?></th>
+            <td><?= $row["judul"]; ?></td>
+            <td><img src="img/<?= $row["gambar"]; ?>" width="50"> </td>
+            <td><?= $row["isi"]; ?></td>
+            <td>
+              <a href="edit.php?id=<?= $row["id"]; ?>">ubah</a> |
+              <a href="delete.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin?');">hapus</a>
+            </td>
+          </tr>
+          <?php $i++; ?>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
   </div>
-  <!-- /#wrapper -->
+</div>
+<!-- /#page-content-wrapper -->
 
-  <?php require_once "view/footer.php"; ?>
+</div>
+<!-- /#wrapper -->
+
+<?php require_once "view/footer.php"; ?>
