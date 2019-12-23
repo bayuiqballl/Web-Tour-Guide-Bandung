@@ -19,8 +19,8 @@ $wisata = query("SELECT * FROM wisatapopuler");
   <div class="container-fluid">
     <h1 class="mt-4">Data Bandung Tour Guide</h1><br>
     <br>
-    <a href="add.php">Tambah Data</a>
-    <br>
+    <a class="btn btn-primary" href="add.php">Tambah Data</a>
+    <br><br>
     <table class="table">
 
       <thead class="thead-dark">
@@ -29,7 +29,7 @@ $wisata = query("SELECT * FROM wisatapopuler");
           <th scope="col">Judul</th>
           <th scope="col">Gambar</th>
           <th scope="col">isi</th>
-          <th scope="col">Aksi</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -41,8 +41,8 @@ $wisata = query("SELECT * FROM wisatapopuler");
             <td><img src="img/<?= $row["gambar"]; ?>" width="50"> </td>
             <td><?= $row["isi"]; ?></td>
             <td>
-              <a href="edit.php?id=<?= $row["id"]; ?>">ubah</a> |
-              <a href="delete.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin?');">hapus</a>
+              <a class="btn btn-warning" href="edit.php?id=<?= $row["id"]; ?>">edit</a> |
+              <a class="btn btn-danger" href="delete.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin?');">hapus</a>
             </td>
           </tr>
           <?php $i++; ?>
