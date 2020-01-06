@@ -3,7 +3,7 @@
 require_once 'db.php';
 
 
-function regsitrasi($data)
+function registrasi($data)
 {
   global $link;
 
@@ -30,7 +30,13 @@ function regsitrasi($data)
 
   $pass = password_hash($pass, PASSWORD_DEFAULT);
 
-  mysqli_query($link, "INSERT INTO user VALUES('','$nama', '$pass','$alamat')");
+  if (!empty(trim($nama)) && !empty(trim($pass))) {
+    mysqli_query($link, "INSERT INTO user VALUES('','$nama', '$pass','$alamat')");
+  } else {
+    echo "<script>
+        alert('Data Wajib di isi!');
+    </script>";
+  }
 
   return mysqli_affected_rows($link);
 }

@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login'])) {
+    echo "<script>
+  document.location.href = '../login.php';
+  </script>";
+    exit;
+}
+
 require_once 'view/header.php';
 
 require_once "view/back.php";
@@ -11,12 +20,12 @@ if (isset($_POST["submit"])) {
     if (edit($_POST) > 0) {
         echo "<script>
             alert('Data berhasil diubah!');
-            document.location.href = 'religi.php';
+            document.location.href = 'index.php';
         </script>";
     } else {
         echo "<script>
             alert('data gagal diedit!');
-            document.location.href = 'religi.php';
+            document.location.href = 'index.php';
         </script>
         ";
     }

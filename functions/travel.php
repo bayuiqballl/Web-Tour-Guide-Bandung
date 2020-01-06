@@ -18,13 +18,15 @@ function add($data)
     $judul = htmlspecialchars($data['judul']);
     $isi = htmlspecialchars($data['isi']);
 
-    $gambar = upload();
-    if (!$gambar) {
-        return false;
-    }
+    if (!empty(trim($judul)) && !empty(trim($isi))) {
+        $gambar = upload();
+        if (!$gambar) {
+            return false;
+        }
 
-    $query = "INSERT INTO wisatapopuler VALUES('','$judul','$gambar','$isi')";
-    mysqli_query($link, $query);
+        $query = "INSERT INTO populer VALUES('','$judul','$gambar','$isi')";
+        mysqli_query($link, $query);
+    }
 
     return mysqli_affected_rows($link);
 }
@@ -45,9 +47,11 @@ function edit($data)
             return false;
         }
     }
-    $query = "UPDATE wisatapopuler SET judul= '$judul', isi = '$isi', gambar = '$gambar' WHERE id = $id ";
+    if (!empty(trim($judul)) && !empty(trim($isi))) {
+        $query = "UPDATE populer SET judul= '$judul', isi = '$isi', gambar = '$gambar' WHERE id = $id ";
 
-    mysqli_query($link, $query);
+        mysqli_query($link, $query);
+    }
     return mysqli_affected_rows($link);
 }
 
@@ -85,20 +89,55 @@ function upload()
 
     // generate new file
     $newFile = uniqid();
-    $newFile = '.';
-    $newFile = $formatGambar;
+    $newFile .= '.';
+    $newFile .= $formatGambar;
 
     move_uploaded_file($tmpName, 'img/' . $newFile);
 
     return $newFile;
 }
 
+// searching
+function cari($keyword)
+{
+    $query = "SELECT * FROM populer WHERE judul LIKE '%$keyword%' ";
+    return query($query);
+}
 
+function cariReligi($keyword)
+{
+    $query = "SELECT * FROM religi WHERE judul LIKE '%$keyword%' ";
+    return query($query);
+}
+
+function cariBudaya($keyword)
+{
+    $query = "SELECT * FROM budaya WHERE judul LIKE '%$keyword%' ";
+    return query($query);
+}
+
+function cariHotel($keyword)
+{
+    $query = "SELECT * FROM hotel WHERE judul LIKE '%$keyword%' ";
+    return query($query);
+}
+
+function cariKuliner($keyword)
+{
+    $query = "SELECT * FROM kuliner WHERE judul LIKE '%$keyword%' ";
+    return query($query);
+}
 
 
 function delete($id)
 {
     global $link;
-    mysqli_query($link, "DELETE FROM wisatapopuler WHERE id = $id");
+    mysqli_query($link, "DELETE FROM populer WHERE id = $id");
     return mysqli_affected_rows($link);
+}
+
+function excerpt($string)
+{
+    $string = substr($string, 0, 107);
+    return $string . "....";
 }

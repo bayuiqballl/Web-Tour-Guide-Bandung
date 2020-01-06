@@ -22,10 +22,10 @@ function add($data)
     if (!$gambar) {
         return false;
     }
-
-    $query = "INSERT INTO budaya VALUES('','$judul','$gambar','$isi')";
-    mysqli_query($link, $query);
-
+    if (!empty(trim($judul))  && !empty(trim($isi))) {
+        $query = "INSERT INTO budaya VALUES('','$judul','$gambar','$isi')";
+        mysqli_query($link, $query);
+    }
     return mysqli_affected_rows($link);
 }
 
@@ -45,8 +45,12 @@ function edit($data)
             return false;
         }
     }
-    $query = "UPDATE budaya SET judul= '$judul', isi = '$isi', gambar = '$gambar' WHERE id = $id ";
-    mysqli_query($link, $query);
+
+    if (!empty(trim($judul)) && !empty(trim($isi))) {
+        $query = "UPDATE budaya SET judul= '$judul', isi = '$isi', gambar = '$gambar' WHERE id = $id ";
+        mysqli_query($link, $query);
+    }
+
     return mysqli_affected_rows($link);
 }
 
@@ -84,8 +88,8 @@ function upload()
 
     // generate new file
     $newFile = uniqid();
-    $newFile = '.';
-    $newFile = $formatGambar;
+    $newFile .= '.';
+    $newFile .= $formatGambar;
 
     move_uploaded_file($tmpName, 'img/' . $newFile);
 

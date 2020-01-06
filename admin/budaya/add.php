@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login'])) {
+    echo "<script>
+  document.location.href = '../login.php';
+  </script>";
+    exit;
+}
+
 require_once 'view/header.php';
 require_once "view/back.php";
 require_once 'func.php';
@@ -7,7 +16,7 @@ if (isset($_POST["submit"])) {
     if (add($_POST) > 0) {
         echo "<script>
             alert('Data ditambahkan!');
-            document.location.href = 'budaya.php';
+            document.location.href = 'index.php';
         </script>";
     } else {
         echo "<script>

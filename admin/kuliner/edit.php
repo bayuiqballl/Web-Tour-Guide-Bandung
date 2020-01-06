@@ -1,10 +1,19 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login'])) {
+    echo "<script>
+  document.location.href = '../login.php';
+  </script>";
+    exit;
+}
+
 require_once 'view/header.php';
-require_once "../core/init.php";
+require_once "func.php";
 require_once "view/back.php";
 
 $id = $_GET['id'];
-$wst = query("SELECT * FROM wisatapopuler WHERE id = $id")[0];
+$wst = query("SELECT * FROM kuliner WHERE id = $id")[0];
 
 if (isset($_POST["submit"])) {
     if (edit($_POST) > 0) {
@@ -41,7 +50,7 @@ if (isset($_POST["submit"])) {
                     <div class="form-group">
                         <label for="gambar">Edit gambar:</label>
                         <img src="img/<?= $wst["gambar"]; ?>" width='40'>
-                        <input type="file" class="form-control-file" name="gambar" id="gambar" required>
+                        <input type="file" class="form-control-file" name="gambar" id="gambar">
                     </div>
                 </div>
                 <div class="form-group">

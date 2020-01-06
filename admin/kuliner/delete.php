@@ -1,6 +1,15 @@
 <?php
+session_start();
 
-require_once "../core/init.php";
+if (!isset($_SESSION['login'])) {
+    echo "<script>
+  document.location.href = '../login.php';
+  </script>";
+    exit;
+}
+
+
+require_once "func.php";
 
 $id = $_GET['id'];
 

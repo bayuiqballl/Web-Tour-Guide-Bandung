@@ -2,10 +2,20 @@
 
 require_once "view/header.php";
 require_once "core/initad.php";
-// include_once "admin/budaya/func.php";
+// pagination
+$jumlahDataPerhalaman = 6;
+$jumlahData = count(query("SELECT * FROM budaya "));
+$jumlahHalaman = ceil($jumlahData / $jumlahDataPerhalaman);
+$halamanAktif = (isset($_GET['halaman']) ? $_GET['halaman'] : 1);
+$awalData = ($jumlahDataPerhalaman * $halamanAktif) - $jumlahDataPerhalaman;
+$budaya = query("SELECT * FROM budaya LIMIT $awalData, $jumlahDataPerhalaman");
 
-$budaya = query("SELECT * FROM budaya");
+if (isset($_POST['cari'])) {
+    $budaya = cariBudaya($_POST['keyword']);
+}
+
 ?>
+
 
 <header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(view/images/budaya.jpg)">
     <div class="overlay"></div>
@@ -31,6 +41,14 @@ $budaya = query("SELECT * FROM budaya");
             <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
                 <h2>Trip With Your Favourite Destination</h2>
                 <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+                <br>
+                <form class="form-inline" action="" method="post">
+                    <button type="submit" name="cari" class="btn btn-primary mb-2">Cari</button>
+                    <div class="form-group mx-3 mb-2">
+                        <label for="cari" class="sr-only">cari</label>
+                        <input type="text" name="keyword" class="form-control" id="cari" size="70" placeholder="cari disini...">
+                    </div>
+                </form>
             </div>
         </div>
         <div class="row">
@@ -38,11 +56,12 @@ $budaya = query("SELECT * FROM budaya");
             <?php foreach ($budaya as $row) : ?>
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="admin/img/<?= $row["gambar"]; ?>" alt="Card image cap" width="286px" height="178px">
+                        <img class="card-img-top" src="admin/budaya/img/<?= $row["gambar"]; ?>" alt="Card image cap" width="286px" height="178px">
+                        <br><br>
                         <div class="card-body">
-                            <h5 class="card-title"><?= '<b>' . $row["judul"]; ?></h5>
-                            <p class="card-text"><?= $row["isi"]; ?></p>
-                            <a href="#" class="btn btn-primary">Info Detail</a>
+                            <h5 class="card-title"><b><?= $row["judul"]; ?></b></h5>
+                            <p class="card-text"><?= excerpt($row["isi"]); ?></p>
+                            <a href="detailbudaya.php?id=<?= $row['id'] ?>" class="btn btn-primary">Info Detail</a>
                         </div>
                     </div>
                 </div>
@@ -50,11 +69,34 @@ $budaya = query("SELECT * FROM budaya");
             <?php endforeach; ?>
         </div>
     </div>
+    <br><br>
+    <div class="pagination col-md-11 col-md-offset-2 text-center gtco-heading">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination ">
+                <?php if ($halamanAktif > 1) : ?>
+                    <li class="page-item"><a class="page-link" href="?halaman=<?= $halamanAktif - 1; ?>">Previous</a></li>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                    <?php if ($i == $halamanAktif) : ?>
+                        <li class="disabled"><a href="?halaman=<?= $i; ?>"><?= $i; ?></a></li>
+                    <?php else : ?>
+                        <li class="page-item"><a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a></li>
+                    <?php endif; ?>
+                <?php endfor; ?>
+
+                <?php if ($halamanAktif < $jumlahHalaman) : ?>
+                    <li class="page-item"><a class="page-link" href="?halaman=<?= $halamanAktif + 1; ?>">Next</a></li>
+                <?php endif; ?>
+
+            </ul>
+        </nav>
+    </div>
+</div>
 
 
+<?php
 
-    <?php
+require_once "view/footer.php";
 
-    require_once "view/footer.php";
-
-    ?>
+?>

@@ -1,9 +1,18 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login'])) {
+  echo "<script>
+  document.location.href = 'login.php';
+  </script>";
+  exit;
+}
+
 require_once "view/header.php";
 require_once "../core/init.php";
 
 
-$wisata = query("SELECT * FROM wisatapopuler");
+$wisata = query("SELECT * FROM populer");
 
 ?>
 
@@ -55,5 +64,7 @@ $wisata = query("SELECT * FROM wisatapopuler");
 
 </div>
 <!-- /#wrapper -->
+
+
 
 <?php require_once "view/footer.php"; ?>

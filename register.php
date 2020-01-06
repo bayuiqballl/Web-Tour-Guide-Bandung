@@ -3,10 +3,12 @@ require_once 'functions/user.php';
 
 if (isset($_POST["register"])) {
 
-  if (regsitrasi($_POST) > 0) {
+  if (registrasi($_POST) > 0) {
     echo "<script>
-			alert('user baru berhasil ditambahkan!');
-			</script>";
+      alert('user baru berhasil ditambahkan!');
+      document.location.href = 'admin/login.php';
+      </script>";
+    // header('location: admin/login.php');
   } else {
     echo mysqli_error($link);
   }
@@ -35,7 +37,7 @@ if (isset($_POST["register"])) {
     <form class="form-signin" action="" method="post">
       <h2 class="form-signin-heading">Please Register</h2>
       <label for="nama">Username</label>
-      <input type="text" class="form-control" name="nama" id="nama" placeholder="Email Address" required="" autofocus="" />
+      <input type="text" class="form-control" name="username" id="nama" placeholder="username" required="" autofocus="" />
       <br>
       <label for="pass">Password</label>
       <input type="password" class="form-control" name="password" id="pass" placeholder="Password" required="" />
@@ -47,7 +49,7 @@ if (isset($_POST["register"])) {
       <textarea name="alamat" id="alamat" class="form-control" rows="4" cols="40"></textarea>
       <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit" name="register">Submit</button>
-      <a href="login.php" class="btn btn btn-lg btn-primary btn-block">Back to Login</a>
+      <a href="admin/login.php" class="btn btn btn-lg btn-primary btn-block">Back to Login</a>
     </form>
 
   </div>

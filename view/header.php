@@ -72,16 +72,16 @@
 					<ul>
 
 						<li class="has-dropdown">
-							<a href="./detail.php">Wisata Religi</a>
+							<a href="./wisatareligi.php">Wisata Religi</a>
 						</li>
 						<li class="has-dropdown">
-							<a href="./detail.php">Wisata Kuliner</a>
+							<a href="./wisatakuliner.php">Wisata Kuliner</a>
 						</li>
 						<li class="has-dropdown">
 							<a href="./wisatabudaya.php">Wisata Budaya</a>
 						</li>
 						<li class="has-dropdown">
-							<a href="./detail.php">Lokasi Hotel</a>
+							<a href="./hotel.php">Lokasi Hotel</a>
 						</li>
 					</ul>
 				</div>
